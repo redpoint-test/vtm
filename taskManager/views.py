@@ -943,16 +943,16 @@
 #     img_url = request.GET.get('u')
 #     return render(request, 'taskManager/view_img.html', {'img_url': img_url})
 
-# @csrf_exempt
-# def ping(request):
+@csrf_exempt
+def ping(request):
 
-#     data = ""
-#     if request.method == 'POST':
-#         ip = request.POST.get('ip')
-#         if re.match('.*(rm|sudo|wget|curl|su|shred) .*',ip,re.I):
-#             data = "Nice try on the dangerous commands, but no"
-#         else:
-#             cmd = "ping -c 5 %s" % ip
-#             data = subprocess.getoutput(cmd)
+    data = ""
+    if request.method == 'POST':
+        ip = request.POST.get('ip')
+        if re.match('.*(rm|sudo|wget|curl|su|shred) .*',ip,re.I):
+            data = "Nice try on the dangerous commands, but no"
+        else:
+            cmd = "ping -c 5 %s" % ip
+            data = subprocess.getoutput(cmd)
 
-#     return render(request, 'taskManager/ping.html', {'data': data})
+    return render(request, 'taskManager/ping.html', {'data': data})
