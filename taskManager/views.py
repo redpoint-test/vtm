@@ -14,7 +14,6 @@ import logging
 from django.http import (
     HttpResponse,  HttpResponseRedirect,
 )
-#make another change
 
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
@@ -101,7 +100,7 @@ def login(request):
                     settings.REDIS.expire(redis_key, LOCKOUT_TIME)
                 
                 if failed_attempts >= MAX_FAILED_ATTEMPTS:
-                    logger.warning(f"Obviously the Account is locked due to multiple failed login attempts: {username}")
+                    logger.warning(f"Account locked due to multiple failed login attempts: {username}")
                     return render(request, 'taskManager/login.html', {'account_locked': False, 'username': username})
                 else:
                     logger.info('Failed login (%s:%s)' % (username, password))#some insecure logging as well
